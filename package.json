@@ -1,0 +1,63 @@
+{
+    "name": "cloud-sf-extension-cap-sample",
+    "version": "1.0.0",
+    "description": "Successfactors Extension Application",
+    "repository": "https://github.com/SAP-samples/cloud-sf-extension-cap-sample.git",
+    "license": "Apache License 2.0",
+    "dependencies": {
+        "@sap/audit-logging": "^5.0.0",
+        "@sap/cds": "6.0.4",
+        "@sap-cloud-sdk/http-client": "^2.6.0",
+        "@sap-cloud-sdk/util": "^2.6.0",
+        "@sap/hana-client": "^2.10.15",
+        "@sap/xb-msg-amqp-v100": "^0.9.48",
+        "@sap/xsenv": "^3.1.0",
+        "@sap/xssec": "^3.2.0",
+        "express": "^4.17.1",
+        "passport": "^0.4.1"
+    },
+    "devDependencies": {
+        "sqlite3": "^5.0.0",
+        "chai": "^4.3.4",
+        "chai-http": "^4.3.0",
+        "mocha": "^9.0.0"
+    },
+    "engines": {
+        "node": "16.x"
+    },
+    "scripts": {
+        "start": "cds run",
+        "build": "cds build/all --clean",
+        "test": "mocha test/chai-test.js --timeout 15000 --exit"
+    },
+    "cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "requires": {
+            "uaa": {
+                "kind": "xsuaa"
+            },
+            "messaging": {
+                "kind": "local-messaging",
+                "[production]": {
+                    "kind": "enterprise-messaging-shared",
+                    "queue": {
+                        "name": "$namespace/cloud-sf-extension-cap-sample-srv/1234"
+                    }
+                },
+                "publishPrefix": "$namespace/",
+                "subscribePrefix": "$namespace/"
+            },
+            "db": {
+                "kind": "sql",
+                "[production]": {
+                    "kind": "hana"
+                }
+            }
+        },
+        "odata": {
+            "version": "v4"
+        }
+    }
+}
