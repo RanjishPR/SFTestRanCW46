@@ -57,15 +57,27 @@
       },
       "FoundationPlatformPLT": {
         "kind": "odata-v2",
-        "model": "srv/external/FoundationPlatformPLT"
+        "model": "srv/external/FoundationPlatformPLT",
+        "credentials": {
+          "destination": "sfextension-service", "path": "/odata/v2",
+          "requestTimeout": 18000000
+        }
       },
       "PLTUserManagement": {
         "kind": "odata-v2",
-        "model": "srv/external/PLTUserManagement"
+        "model": "srv/external/PLTUserManagement",
+        "credentials": {
+          "destination": "sfextension-service", "path": "/odata/v2",
+          "requestTimeout": 18000000
+        }
       },
       "ECSkillsManagement": {
         "kind": "odata-v2",
-        "model": "srv/external/ECSkillsManagement"
+        "model": "srv/external/ECSkillsManagement",
+        "credentials": {
+          "destination": "sfextension-service", "path": "/odata/v2",
+          "requestTimeout": 18000000
+        }
       }
     },
     "odata": {
